@@ -2,28 +2,25 @@ package etrisfpocdatamodel
 
 import "gorm.io/gorm"
 
-type Device struct {
+type Controller struct {
 	gorm.Model
-	DID   string `gorm:"uniqueIndex;column:did" json:"did"` // Device ID
-	DName string `gorm:"column:dname" json:"dname"`         // Device Name
-	Type  string `gorm:"column:type" json:"type"`           // Device Type
-	CID   string `gorm:"column:cid" json:"cid"`             // Controller ID
-	SID   string `gorm:"column:sid" json:"sid"`             // Service ID
-	SName string `gorm:"column:sname" json:"sname"`         // Service Name
+	ID          string `gorm:"uniqueIndex;column:id" json:"id"`         // Device ID
+	Name        string `gorm:"column:name" json:"name"`                 // Device Name
+	Type        string `gorm:"column:type" json:"type"`                 // Device Type
+	AgentID     string `gorm:"column:agent_id" json:"agent_id"`         // Controller ID
+	ServiceName string `gorm:"column:service_name" json:"service_name"` // Service Name
 	// Opts []string
 }
 
-type Controller struct {
+type Agent struct {
 	gorm.Model
-	CID   string `gorm:"uniqueIndex;column:cid" json:"cid"` // Controller ID
-	CName string `gorm:"column:ename" json:"cname"`         // Device ID
-	Key   string `gorm:"column:key" json:"key"`             // Service ID
+	ID   string `gorm:"uniqueIndex;column:id" json:"id"` // Controller ID
+	Name string `gorm:"column:ename" json:"name"`        // Device ID
 }
 
 type Service struct {
 	gorm.Model
-	SName     string `gorm:"column:sname" json:"sname"`
-	SID       string `gorm:"column:sid" json:"sid"`
-	NumOfDevs int    `gorm:"column:ndevs" json:"ndevs"`
-	Addr      string `gorm:"column:addr"`
+	Name string `gorm:"column:name" json:"name"`
+	ID   string `gorm:"column:id" json:"id"`
+	Addr string `gorm:"column:addr"`
 }
